@@ -25,11 +25,6 @@ echo siteHead([
 	"<!-- autoComplete.js  https://tarekraafat.github.io/autoComplete.js/ -->\n" .
 		linkCss('https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.1.1/dist/css/autoComplete.min.css', true),
 
-	// Progresive image
-		// "<!-- A lazy-loading progressive image similar to those seen on Facebook and Medium.
-		// https://github.com/craigbuckler/progressive-image.js -->\n" .
-		// linkCss('https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.css', true),
-
 	// Custom Css
 		files()->render('parts/style/_custom-style', ['bImg' => setting('b-img')])
 ]);
@@ -74,11 +69,6 @@ echo siteFoot([
 	]),
 // Codyhouse framework
 	"<!-- Codyhouse framework  https://github.com/CodyHouse/codyhouse-framework -->\n" .
-	scriptSrc(urls('templates') . 'assets/js/scripts.min.js'),
-
-// Progresive Images
-	// "<!-- A lazy-loading progressive image similar to those seen on Facebook and Medium.
-	// 		https://github.com/craigbuckler/progressive-image.js -->\n" .
-	// scriptSrc('https://cdn.jsdelivr.net/npm/progressive-image.js/dist/progressive-image.js')
+	scriptSrc(urls('templates') . 'assets/js/scripts.min.js')
 ]);
 // End /html
