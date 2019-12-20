@@ -11,7 +11,6 @@
  *  - `icon` (url): Favicon url.
  *  - `title` (string): Site Titile.
  *  - `description` (string): Site Description.
- *  - `custom` (bool): Show Custom options if exists.
  *  - `hreflang` (string): Rel Alternate Hreflang.
  *  - `gw_code` (string): Google Webmaster Code.
  *
@@ -37,7 +36,7 @@ function siteHead($custom = array(), $options = array()) {
 		'icon' => setting('favicon') ? "<link rel='icon' href='" . setting('favicon') . "'/>" : null,
 		'title' => "<title>" . setting('meta-title') . "</title>",
 		'description' => setting('meta-description') ? "<meta name='description' content='" . setting('meta-description') . "'>" : null,
-		'custom' => $custom ? implode(" ", $custom) : null,
+		'custom' => $custom ? implode(" ", $custom) : null, // Not edit this via $options
 		'hreflang' => hreflang(page()),
 		'gw_code' => gwCode(setting('gw-code')),
 	];
@@ -67,7 +66,7 @@ $contentHead
 $out .= debugInfo(); // DEBUG INFO
 $out .= editBtn(); // EDIT BUTTON
 
-return $out;
+	return $out;
 }
 
 /**
@@ -76,7 +75,6 @@ return $out;
  * @param array $custom Custom files, sections, parts, etc.
  * @param array|string $options Options to modify default behavior:
  *  - `ga_code` (string): Google Analytics code.
- *  - `custom` (bool): Show Custom options if exists.
  *
  */
 function siteFoot($custom = array(), $options = array()) {
@@ -89,7 +87,7 @@ function siteFoot($custom = array(), $options = array()) {
 // Defaults
 	$defaults = array(
 		'ga_code' => gaCode(setting('ga-code')),
-		'custom' => $custom ? implode(" ", $custom) : null,
+		'custom' => $custom ? implode(" ", $custom) : null, // Not edit this via $options
 	);
 // Merge Options
 	$options = _mergeOptions($defaults, $options);
@@ -107,8 +105,7 @@ $contentFoot
 </body>
 </html>
 ";
-
-return $out;
+	return $out;
 }
 
 /**
