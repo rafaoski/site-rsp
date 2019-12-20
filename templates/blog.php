@@ -6,11 +6,13 @@
  *
  */
 
+// Aauthors
 $textAuthors = sanitizer()->pageName(setting('authors'));
-$inputAuthors = sanitizer()->text(input('get', $textAuthors)); // 'authors'
+$inputAuthors = sanitizer()->text(input('get', $textAuthors));
 
+// Aauthor
 $textAuthor = sanitizer()->pageName(setting('author'));
-$inputAuthor = sanitizer()->text(input('get', $textAuthor)); // 'author'
+$inputAuthor = sanitizer()->text(input('get', $textAuthor));
 
 // Authors Page
 if($inputAuthors && $inputAuthors == 'all') { // http://rsp.test/blog/?authors=all

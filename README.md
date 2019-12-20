@@ -61,7 +61,6 @@ https://codyhouse.co/license#framework
 [Feather Icons](https://feathericons.com/)<br>
 [autoComplete.js](https://tarekraafat.github.io/autoComplete.js)<br>
 [Web Font Loader](https://github.com/typekit/webfontloader)<br>
-[AddToAny](https://www.addtoany.com/)<br>
 [Cool Text](https://cooltext.com/Logo-Design-Skate)<br>
 [Pixabay](https://pixabay.com/)<br>
 
