@@ -1,0 +1,52 @@
+/* --------------------------------
+
+File#: _bg-image
+Title: Background Image
+Descr: You will see custom class in <body class='bg-image'> if you add a picture to the page ( images field )
+
+-------------------------------- */
+
+.bg-image {
+
+/* Header & Footer */
+	.section-header, .section-footer {
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-size: cover;
+		background-position: center;
+		color: var(--color-contrast-low);
+	}
+
+/* Logo Effect */
+	.logo-effect {
+		color: transparent;
+	}
+
+/* Header */
+	.section-header {
+		/* Nav */
+		.main-nav a.color-inherit:hover {
+			color: var(--color-black);
+		}
+
+		/* Search Form */
+		.search input {
+			background-color: transparent;
+		}
+
+		/* Site Branding */
+		.site-branding, h1, h2, .site-description {
+			color: var(--color-contrast-low);
+		}
+
+		/* Site Title */
+		.site-title {
+			font-family: 'Allerta Stencil', sans-serif;
+			font-size: 2.5rem;
+			color: var(--color-white);
+			line-height: var(--heading-line-height, 1.2);
+		}
+
+	}
+
+}

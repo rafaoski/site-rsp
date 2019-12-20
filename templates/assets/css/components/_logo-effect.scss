@@ -1,0 +1,57 @@
+/* --------------------------------
+
+File#: _logo-effect
+Title: Logo Effect
+Descr: Simple Logo Effect
+
+-------------------------------- */
+
+		.logo-effect  {
+			font-family: 'Allerta Stencil', sans-serif;
+			outline: none;
+			text-decoration: none;
+			position: relative;
+			display: inline-block;
+			font-weight: 300;
+		}
+
+		.logo-effect {
+			text-transform: uppercase;
+			overflow: hidden;
+			line-height: 0.85;
+			-webkit-text-stroke-color: var(--color-bg);
+			-webkit-text-stroke-width: 1px;
+			&::after {
+				content: '';
+				position: absolute;
+				height: 16px;
+				width: 100%;
+				top: 50%;
+				margin-top: -8px;
+				right: 0;
+				background: var(--color-bg);
+				transform: translate3d(-100%,0,0);
+				transition: transform 0.4s;
+				transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+			}
+		}
+
+		.site-name--link:hover .logo-effect {
+			&::after {
+				transform: translate3d(100%,0,0);
+			}
+		}
+
+		.site-name--link:hover .logo-effect {
+			&::before {
+				content: attr(data-letters);
+				position: absolute;
+				z-index: 2;
+				overflow: hidden;
+				color: var(--color-black);
+				white-space: nowrap;
+				width: 0%;
+				transition: width 0.4s 0.3s;
+				width: 100%;
+			}
+		}
