@@ -321,44 +321,64 @@ return <<<EOT
 EOT;
 }
 
-function renderSections($sections, $options = array()) {
+/**
+ *  Render Site Sections
+ *
+ * @param array $sections all sections like array('header', 'main', 'footer') or:
+ * array('header' => ['section_class' => 'text-xxxl', 'element_html' => 'header'], 'main' => [], 'footer' => []);
+ *
+ * @param array|string $options Options to modify default behavior:
+ * - 'section_path' (string): Assumed relative to /site/templates/
+ * - 'class_prefix' (string): Basic section class prefix ( default is section )
+ *
+ */
+function renderSections($sections = array(), $options = array()) {
 
-// $out is where we store the markup we are creating in this function
-$out = '';
+	// $out is where we store the markup we are creating in this function
+	$out = '';
 
-// Default Options
-$defaults = array(
-	'section_path' => '', // Assumed relative to /site/templates/
-	'class_prefix' => 'section',
-);
-// Merge Options
-$options = _mergeOptions($defaults, $options);
+	// Default Options
+	$defaults = array(
+		'section_path' => '',
+		'class_prefix' => 'section'
+	);
+	// Merge Options
+	$options = _mergeOptions($defaults, $options);
+	// Section Custom prefix
+	$sectionPrefix = $options['class_prefix'] ? $options['class_prefix'] . '-' : '';
 
-foreach ($sections as $section => $custom) {
+	foreach ($sections as $section => $custom) {
 
-// Render Section
-$render = files()->render("$options[section_path]/_section-$section");
+	// Section Info Text
+	$sectionText = strtoupper($section);
 
-// Section Info Text
-$sectionText = strtoupper($section);
+	// More options
+	$sectionClass = isset($custom['section_class']) ? ' ' . $custom['section_class'] : '';
+	$contentClass = isset($custom['content_class']) ? ' ' . $custom['content_class'] : '';
+	$htmlElement = isset($custom['element_html']) ? $custom['element_html'] : 'section';
 
-// Section Custom Class
-$sectionPrefix = $options['class_prefix'] ? $options['class_prefix'] . '-' : '';
-$sectionClass = isset($custom['section_class']) ? ' ' . $custom['section_class'] : '';
-$contentClass = isset($custom['content_class']) ? ' ' . $custom['content_class'] : '';
+	// Check if is basic array('header', 'main', 'footer') or multidimensional array('header' => [], 'main' => [], 'footer' => [])
+	if(is_string($custom)) {
+		$render = files()->render("$options[section_path]/_section-$custom"); // basic array()
+	// Change Section Info Text
+		$sectionText = strtoupper($custom);
+	// Change id, class
+		$section = $custom;
+	} else {
+		$render = files()->render("$options[section_path]/_section-$section"); // multidimensional array([])
+	}
 
-// All Sections
-$out .= <<<EOD
+	// Render All Sections
+$out .= "
 \n<!-- $sectionText -->
-<section id='$section' class='{$sectionPrefix}$section{$sectionClass}'>
-	<div class='{$sectionPrefix}$section--content{$contentClass}'>
-		$render
+<$htmlElement id='$section' class='{$sectionPrefix}$section{$sectionClass}'>
+	<div class='{$sectionPrefix}$section--content{$contentClass}'>\n
+		$render\n
 	</div>
-</section>
-<!-- END / $sectionText -->\n
-EOD;
+</$htmlElement>
+<!-- END / $sectionText -->";
 }
-return $out;
+	return $out;
 }
 
 /**
